@@ -1,0 +1,14 @@
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\bin\Debug\netcoreapp2.1\OrientationAppApi.deps.json
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\bin\Debug\netcoreapp2.1\OrientationAppApi.runtimeconfig.json
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\bin\Debug\netcoreapp2.1\OrientationAppApi.runtimeconfig.dev.json
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\bin\Debug\netcoreapp2.1\OrientationAppApi.dll
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.csprojAssemblyReference.cache
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.csproj.CoreCompileInputs.cache
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.RazorAssemblyInfo.cache
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.RazorAssemblyInfo.cs
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.AssemblyInfoInputs.cache
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.AssemblyInfo.cs
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.RazorTargetAssemblyInfo.cache
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\bin\Debug\netcoreapp2.1\OrientationAppApi.pdb
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.dll
+C:\Users\Jay\source\repos\OrientationAppApi\OrientationAppApi\obj\Debug\netcoreapp2.1\OrientationAppApi.pdb
