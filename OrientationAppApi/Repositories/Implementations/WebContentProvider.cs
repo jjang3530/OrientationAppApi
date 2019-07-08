@@ -27,7 +27,7 @@ namespace OrientationAppApi.Repositories.Implementations
                 _baseUrl = url;
 
                 //string requestUri = $"{_baseUrl}/{site}_api/web/lists/GetByTitle('{list}')/items?$select=ID,Title,ProgramTitle,School,MinimumSpecs,AdditionalReqs,ProgramVersion&$filter=(substringof('"+year+"',ProgramVersion) and (DisplayToWeb eq 1))&$orderby = School,ProgramTitle asc ";
-                string requestUri = $"{_baseUrl}/{site}_api/web/lists/GetByTitle('{list}')/items?$select=" + select;
+                string requestUri = $"{_baseUrl}/{site}/_api/lists/GetByTitle('{list}')/items?filter=ID eq '{select}'";
 
                 var handler = new HttpClientHandler { Credentials = _credentials };
 

@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OrientationAppApi.Helpers;
+using OrientationAppApi.Repositories.Implementations;
+using OrientationAppApi.Repositories.Interfaces;
 
 namespace OrientationAppApi
 {
@@ -32,7 +34,7 @@ namespace OrientationAppApi
             Configuration.Bind("SharePointSettings", sharepointsettings);
             services.AddSingleton(sharepointsettings);
 
-            services.AddSharePointRepos(this.Configuration);
+            services.AddSingleton<IWebContentRepo, WebContentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

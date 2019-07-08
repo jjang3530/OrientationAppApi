@@ -44,7 +44,7 @@ namespace OrientationAppApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            WebContent _detailsList = null;
+            IEnumerable<WebContent> _detailsList = null;
             string select = id.ToString(); // change
             try
             {
