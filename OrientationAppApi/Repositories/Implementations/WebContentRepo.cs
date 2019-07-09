@@ -10,22 +10,17 @@ namespace OrientationAppApi.Repositories.Implementations
 {
     public class WebContentRepo : IWebContentRepo
     {
-        private readonly WebContentProvider _WebContentProvider;
+        private readonly IWebContentProvider _WebContentProvider;
 
-        public WebContentRepo()
-        {
-            _WebContentProvider = new WebContentProvider();
-        }
-
-        public WebContentRepo(WebContentProvider WebContentProvider)
+        public WebContentRepo(IWebContentProvider WebContentProvider)
         {
             _WebContentProvider = WebContentProvider;
         }
 
-        public async Task<IList<WebContent>> GetSharePointListsAsync(string username, string password, string domain, string url, string site, string list, string contentId)
+        public async Task<IList<WebContent>> GetSharePointListsAsync(string site, string list, string contentId)
         {
             var weblists = new List<WebContent>();
-            var json = await _WebContentProvider.GetSharePointListsAsync(username, password, domain, url, site, list, contentId);
+            var json = await _WebContentProvider.GetSharePointListsAsync(site, list, contentId);
 
             JArray results = (JArray)JObject.Parse(json)["d"]["results"];
 
@@ -33,7 +28,7 @@ namespace OrientationAppApi.Repositories.Implementations
             {
                 weblists.Add(new WebContent
                 {
-                    ContentId = (string)result["ContentId"],
+                    ContentId = (string)result["ContentID"],
                     Title = (string)result["Title"],
                     Section = (string)result["SEction"],
                     WebText = (string)result["Web_x0020_Text"],

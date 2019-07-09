@@ -18,12 +18,11 @@ namespace OrientationAppApi.Controllers
         private const string _site = "sites/orientation-startup";
         private const string _list = "Web Content";
         private readonly IWebContentRepo _repo;
-        private SharePointSettings _SharePointSettings;
 
-        public SharepointController(IWebContentRepo repo, SharePointSettings sharepointsettings) //, SharePointSettings sharepointsettings
+
+        public SharepointController(IWebContentRepo repo)
         {
             _repo = repo;
-            _SharePointSettings = sharepointsettings;
         }
 
         // GET api/orientation-startup
@@ -45,8 +44,9 @@ namespace OrientationAppApi.Controllers
 
             IList<WebContent> _detailsList = null;
             try
+
             {
-                _detailsList = await _repo.GetSharePointListsAsync(_SharePointSettings.UserName, _SharePointSettings.Password, _SharePointSettings.Domain, _SharePointSettings.Url, _site, _list, contentId); //_SharePointSettings.UserName, _SharePointSettings.Password, _SharePointSettings.Domain, _SharePointSettings.Url,
+                _detailsList = await _repo.GetSharePointListsAsync(_site, _list, contentId);
                 var result = _detailsList.Single();
 
                 return Ok(result);

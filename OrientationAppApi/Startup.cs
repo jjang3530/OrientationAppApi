@@ -35,6 +35,7 @@ namespace OrientationAppApi
             services.AddSingleton(sharepointsettings);
 
             services.AddSingleton<IWebContentRepo, WebContentRepo>();
+            services.AddSingleton<IWebContentProvider, WebContentProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
