@@ -5,7 +5,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using OrientationAppApi.Helpers;
 using OrientationAppApi.Models;
 using OrientationAppApi.Repositories.Interfaces;
@@ -21,7 +20,7 @@ namespace OrientationAppApi.Controllers
         private readonly IWebContentRepo _repo;
         private SharePointSettings _SharePointSettings;
 
-        public SharepointController(IWebContentRepo repo, SharePointSettings sharepointsettings)
+        public SharepointController(IWebContentRepo repo, SharePointSettings sharepointsettings) //, SharePointSettings sharepointsettings
         {
             _repo = repo;
             _SharePointSettings = sharepointsettings;
@@ -36,22 +35,21 @@ namespace OrientationAppApi.Controllers
 
 
         // GET api/orientation-startup/1
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetWebConent(int id)
+        [HttpGet("{contentId}")]
+        public async Task<IActionResult> GetWebConent(string contentId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            IEnumerable<WebContent> _detailsList = null;
-            string select = id.ToString(); // change
+            IList<WebContent> _detailsList = null;
             try
             {
-                _detailsList = await _repo.GetSharePointListsAsync(_SharePointSettings.UserName, _SharePointSettings.Password, _SharePointSettings.Domain, _SharePointSettings.Url, _site, _list, select);
+                _detailsList = await _repo.GetSharePointListsAsync(_SharePointSettings.UserName, _SharePointSettings.Password, _SharePointSettings.Domain, _SharePointSettings.Url, _site, _list, contentId); //_SharePointSettings.UserName, _SharePointSettings.Password, _SharePointSettings.Domain, _SharePointSettings.Url,
+                var result = _detailsList.Single();
 
-
-                return Ok(_detailsList);
+                return Ok(result);
             }
             catch (WebException webException)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrientationAppApi.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,21 +14,21 @@ namespace OrientationAppApi.Repositories.Implementations
         private NetworkCredential _credentials;
         private string _response = null;
 
-
         public WebContentProvider()
         {
 
         }
 
-        public async Task<string> GetSharePointListsAsync(string username, string password, string domain, string url, string site, string list, string select)
+        public async Task<string> GetSharePointListsAsync(string username, string password, string domain, string url, string site, string list, string contentId) 
         {
             try
             {
+                
                 _credentials = new NetworkCredential(username, password, domain);
                 _baseUrl = url;
 
-                //string requestUri = $"{_baseUrl}/{site}_api/web/lists/GetByTitle('{list}')/items?$select=ID,Title,ProgramTitle,School,MinimumSpecs,AdditionalReqs,ProgramVersion&$filter=(substringof('"+year+"',ProgramVersion) and (DisplayToWeb eq 1))&$orderby = School,ProgramTitle asc ";
-                string requestUri = $"{_baseUrl}/{site}/_api/lists/GetByTitle('{list}')/items?filter=ID eq '{select}'";
+
+                string requestUri = $"{_baseUrl}/{site}/_api/web/lists/GetByTitle('{list}')/items?$filter=ContentID eq '{contentId}'";
 
                 var handler = new HttpClientHandler { Credentials = _credentials };
 

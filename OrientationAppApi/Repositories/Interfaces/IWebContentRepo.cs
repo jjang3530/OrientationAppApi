@@ -8,6 +8,6 @@ namespace OrientationAppApi.Repositories.Interfaces
 {
     public interface IWebContentRepo
     {
-        Task<IEnumerable<WebContent>> GetSharePointListsAsync(string username, string password, string domain, string url, string site, string list, string id);
+        Task<IList<WebContent>> GetSharePointListsAsync(string username, string password, string domain, string url, string site, string list, string contentId); //string username, string password, string domain, string url, 
     }
 }
