@@ -5,7 +5,8 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
+using OrientationAppApi.Helpers;
+using OrientationAppApi.Models;
 using OrientationAppApi.Repositories.Interfaces;
 
 namespace OrientationAppApi.Controllers
@@ -18,12 +19,13 @@ namespace OrientationAppApi.Controllers
         private const string _list = "Web Content";
         private readonly IWebContentRepo _repo;
 
+
         public SharepointController(IWebContentRepo repo)
         {
             _repo = repo;
         }
 
-        // GET api/sharepoint
+        // GET api/orientation-startup
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -31,47 +33,23 @@ namespace OrientationAppApi.Controllers
         }
 
 
-        // GET api/sharepoint/1
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetWebConent(int id)
+        // GET api/orientation-startup/1
+        [HttpGet("{contentId}")]
+        public async Task<IActionResult> GetWebConent(string contentId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            IList<WebContent> _detailsList = null;
             try
+
             {
-                var wikiPage = await _repo.GetWebConentAsync(_site, _list, id);
-                var jObject = new JObject();
+                _detailsList = await _repo.GetSharePointListsAsync(_site, _list, contentId);
+                var result = _detailsList.Single();
 
-                if (wikiPage.HasHeader)
-                {
-                    jObject.Add("headerContent", wikiPage.HeaderContent);
-                }
-
-                if (wikiPage.ColumnCount == 1)
-                {
-                    jObject.Add("mainContent", wikiPage.MainContent);
-                }
-                else if (wikiPage.ColumnCount == 2)
-                {
-                    jObject.Add("leftContent", wikiPage.LeftContent);
-                    jObject.Add("rightContent", wikiPage.RightContent);
-                }
-                else if (wikiPage.ColumnCount == 3)
-                {
-                    jObject.Add("leftContent", wikiPage.LeftContent);
-                    jObject.Add("middleContent", wikiPage.MiddleContent);
-                    jObject.Add("rightContent", wikiPage.RightContent);
-                }
-
-                if (wikiPage.HasFooter)
-                {
-                    jObject.Add("footerContent", wikiPage.FooterContent);
-                }
-
-                return Ok(jObject);
+                return Ok(result);
             }
             catch (WebException webException)
             {
